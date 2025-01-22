@@ -5,8 +5,12 @@ class WordSorter {
     public static void main(String[] args) {
         String filename = enterFileName(); //We get the namefile 
         testSortAlgoritm();
+
+        String[] words = getWordsFromFile(filename);
+        System.out.println(Arrays.toString(words));
     }
 
+    //Zero Method 
     static String enterFileName() {
         Scanner scann = new Scanner(System.in);
         String str; //This string will be use to store a initialized value 
@@ -22,6 +26,35 @@ class WordSorter {
         return str;
     }
 
+    //First Method 
+    static String[] getWordsFromFile(String filename) {
+        ArrayList<String> openingWords = new ArrayList<>(); //Here we storing the words that don't know their quantity
+        String[] words; //Here we will copy the words knowing their quantity 
+                        
+        Scanner reader;
+        try {
+            reader = new Scanner(new FileReader(filename)); //We make the instance for reading
+            while (reader.hasNextLine()) {
+                openingWords.add(reader.nextLine()); //We use scann methods for reading
+            }
+            reader.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("There is a error: " + e.getMessage());
+        }
+
+        int i = 0; //Control variable for string array
+        words = new String[openingWords.size()]; //We instantiate the string array
+                                                 
+        for (String s : openingWords) { //We copy the words to string array
+            words[i] = s;
+            i++;
+        }
+
+        return words;
+    }
+
+    //Fourth Method 
     static void mergeSort(int[] arr) {
         int lastIndex = arr.length - 1;
         if (lastIndex <= 0) return; //The array needs more than one element
