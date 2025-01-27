@@ -55,13 +55,13 @@ class WordSorter {
     }
 
     //Fourth Method 
-    static void mergeSort(int[] arr) {
-        int lastIndex = arr.length - 1;
-        if (lastIndex <= 0) return; //The array needs more than one element
+    static void mergeSort(String[] arr) {
+        int size = arr.length;
+        if (size <= 1) return; //The array needs more than one element
 
         //We make two arrays with the elements of 'arr' 
-        int[] left = new int[(lastIndex + 1) / 2];
-        int[] right = new int[lastIndex + 1 - left.length];
+        String[] left = new String[size / 2];
+        String[] right = new String[size - left.length];
 
         for (int i = 0; i < left.length; i++) { //First array
             left[i] = arr[i];
@@ -78,10 +78,10 @@ class WordSorter {
         merge(arr, left, right); //This method sorts firts the little arrays, them sorth the next arrays
     }
 
-    static void merge(int[] arr, int[] left, int[] right) {
+    static void merge(String[] arr, String[] left, String[] right) {
         int  k = 0, i = 0, j = 0;
         while (i < left.length && j < right.length) { //This loop fills the array with elements until all elements from either the left or right array have been consumed
-            if (left[i] <= right[j]) {
+            if (left[i].compareToIgnoreCase(right[j]) < 0) {
                 arr[k] = left[i];
                 i++;
             } else {
@@ -106,8 +106,8 @@ class WordSorter {
     }
 
     static void testSortAlgoritm() {
-        int[] FIRST_ARRAY = {100, 99, 93, 11, -1, 0, -1, 12, -10, 100, 11};
-        int[] SECOND_ARRAY = {-1, 0, -1, -5, -1, 0, -1, 0, -1, 0, 0, 0, -1, -1};
+        String[] FIRST_ARRAY = {"creando", "una", "admirable", "tension", "entre", "lo", "cómico", "y", "lo", "trágico"};
+        String[] SECOND_ARRAY = {"Mario", "Vargas", "Llosa", "es", "un", "gran", "literato"};
 
         System.out.println("\nThe test begins - These are our arrays"); //Before sort
         System.out.println("Array 1: " + Arrays.toString(FIRST_ARRAY));
